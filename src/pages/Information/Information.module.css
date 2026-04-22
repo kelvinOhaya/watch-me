@@ -1,0 +1,77 @@
+.bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  flex: 1 0 0;
+  align-self: stretch;
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 1) 100%
+  );
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.8);
+  color: var(--white100);
+}
+
+.bgImg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  background: url("../../assets/tadc_billboard.png") lightgray 50% / cover
+    no-repeat;
+  filter: blur(30px);
+}
+
+.topContent {
+  width: 100%;
+  display: flex;
+  padding-right: 32px;
+  justify-content: space-between;
+  align-self: stretch;
+  text-align: left;
+}
+
+.contentLayer {
+  position: relative;
+  z-index: 1;
+}
+
+.movieAndDescription {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  h1 {
+    color: #fff;
+    font-family: Helvetica;
+    font-size: 46px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+  }
+  p {
+    color: #7c7c7c;
+    font-family: Helvetica;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+  }
+}
+
+.ratingAndVotesSection {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
