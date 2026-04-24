@@ -1,12 +1,33 @@
-import React, { useLayoutEffect, useRef, useState } from "react";
+import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import styles from "./WatchListBtn.module.css";
 import Bookmark from "../Bookmark";
+import useWatchlist from "../../hooks/useWatchlist";
 
-function WatchListBtn() {
-  const [hasBeenAdded, setHasBeenAdded] = useState(true);
+function WatchListBtn({ id, show, showType }) {
+  const {
+    addToWatchList,
+    removeFromWatchList,
+    hasBeenSaved,
+    watchlist,
+    saveWatchlist,
+  } = useWatchlist();
+  const [hasBeenAdded, setHasBeenAdded] = useState(
+    hasBeenSaved(show, id, showType),
+  );
+
+  useEffect(() => {
+    saveWatchlist();
+  }, [watchlist, saveWatchlist]);
   const buttonRef = useRef(null);
   const isInitialRender = useRef(true);
+
+  const handleClick = () => {
+    hasBeenAdded
+      ? removeFromWatchList(id, showType)
+      : addToWatchList(show, id, showType);
+    setHasBeenAdded((prev) => !prev);
+  };
 
   useLayoutEffect(() => {
     const button = buttonRef.current;
@@ -18,12 +39,9 @@ function WatchListBtn() {
     if (!label || !icon) return;
 
     if (isInitialRender.current) {
-      gsap.set(button, {
-        "--watchlist-overlay-opacity": hasBeenAdded ? 1 : 0,
-        scale: 1,
-      });
-      gsap.set(label, { color: hasBeenAdded ? "var(--bg)" : "var(--p100)" });
-      gsap.set(icon, { fill: hasBeenAdded ? "var(--bg)" : "var(--p100)" });
+      gsap.set(button, { scale: 1 });
+      gsap.set(label, { color: hasBeenAdded ? "var(--p100)" : "var(--p500)" });
+      gsap.set(icon, { fill: hasBeenAdded ? "var(--p100)" : "var(--p500)" });
       isInitialRender.current = false;
       return;
     }
@@ -36,66 +54,34 @@ function WatchListBtn() {
       .to(
         button,
         {
-          "--watchlist-overlay-opacity": hasBeenAdded ? 1 : 0,
           scale: 1,
         },
         0,
       )
-      .to(label, { color: hasBeenAdded ? "var(--bg)" : "var(--p100)" }, 0)
-      .to(icon, { fill: hasBeenAdded ? "var(--bg)" : "var(--p100)" }, 0);
+      .to(
+        label,
+        { color: hasBeenAdded ? "var(--p100)" : "var(--p500)", duration: 0.1 },
+        0,
+      )
+      .to(
+        icon,
+        { fill: hasBeenAdded ? "var(--p100)" : "var(--p500)", duration: 0.1 },
+        0,
+      );
 
     return () => timeline.kill();
   }, [hasBeenAdded]);
-
-  const handleEnter = () => {
-    gsap.killTweensOf(buttonRef.current);
-    gsap.to(buttonRef.current, {
-      scale: 1.03,
-      duration: 0.2,
-      ease: "power2.out",
-    });
-  };
-
-  const handleDown = () => {
-    gsap.killTweensOf(buttonRef.current);
-    gsap.to(buttonRef.current, {
-      scale: 0.96,
-      duration: 0.12,
-      ease: "power2.out",
-    });
-  };
-
-  const handleUp = () => {
-    gsap.killTweensOf(buttonRef.current);
-    gsap.to(buttonRef.current, {
-      scale: 1.03,
-      duration: 0.18,
-      ease: "power2.out",
-    });
-  };
-
-  const handleLeave = () => {
-    gsap.killTweensOf(buttonRef.current);
-    gsap.to(buttonRef.current, {
-      scale: 1,
-      duration: 0.2,
-      ease: "power2.out",
-    });
-  };
 
   return (
     <button
       className={styles.button}
       ref={buttonRef}
-      onMouseEnter={handleEnter}
-      onMouseDown={handleDown}
-      onMouseUp={handleUp}
-      onMouseLeave={handleLeave}
-      onClick={() => setHasBeenAdded((prev) => !prev)}
+      onClick={handleClick}
+      style={{ background: hasBeenAdded ? "var(--p500)" : "var(--pg100)" }}
     >
       <span className={styles.label}>
-        {hasBeenAdded ? " REMOVE FROM WATCHLIST" : "ADD TO WATCHLIST"}{" "}
-        <Bookmark />
+        {hasBeenAdded ? "REMOVE FROM WATCHLIST" : "ADD TO WATCHLIST"}{" "}
+        <Bookmark fill={hasBeenAdded ? "var(--p100)" : "var(--p500)"} />
       </span>
     </button>
   );

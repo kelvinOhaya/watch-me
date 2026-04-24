@@ -1,6 +1,5 @@
 .button {
   position: relative;
-  overflow: hidden;
   display: flex;
   width: fit-content;
   padding: 16px 32px;
@@ -9,18 +8,8 @@
   gap: 16px;
   border-radius: 24px;
   z-index: 900;
-  background: var(--bg);
-  --watchlist-overlay-opacity: 1;
-}
-
-.button::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: var(--pg100);
-  opacity: var(--watchlist-overlay-opacity);
-  pointer-events: none;
-  z-index: 0;
+  background: var(--p500);
+  transition: background 0.3s ease-out;
 }
 
 .label {
