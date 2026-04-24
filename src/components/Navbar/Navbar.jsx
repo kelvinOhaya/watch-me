@@ -29,6 +29,7 @@ function Navbar() {
           <button
             onClick={(e) => {
               e.preventDefault();
+              if (!searchInput.trim()) return;
               navigate(`/search/${searchInput}`);
             }}
           >
