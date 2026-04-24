@@ -1,5 +1,4 @@
-import { save, watch } from "fontawesome";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
 function useWatchlist() {
   const [watchlist, setWatchlist] = useState(
