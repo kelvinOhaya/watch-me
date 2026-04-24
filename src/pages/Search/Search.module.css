@@ -5,6 +5,8 @@
   display: flex;
   flex-direction: column;
   padding: 32px 32px 0;
+  top: 0;
+  padding-top: 113px;
   gap: 64px;
   background: linear-gradient(153deg, #150400 0.18%, #000 99.82%);
 }
