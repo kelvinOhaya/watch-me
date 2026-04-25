@@ -16,7 +16,7 @@ function useUtils() {
   }, []);
 
   const getPosterImg = useCallback(
-    (path) => `https://image.tmdb.org/t/p/original/${path}`,
+    (path) => `httpps://image.tmdb.org/t/p/original/${path}`,
     [],
   );
 

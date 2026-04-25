@@ -6,22 +6,53 @@
 
 ## 2. Technical Architecture
 
-The application follows a modular Frontend-First architecture (React/JavaScript), interacting with an external metadata API.
+Even though this website uses React, Object Oriented Principles were still used. Here is how the structure would look if it was OOP:
 
 ### Class/Component Breakdown
 
-- **App Component:** The root container that manages the global state (the watchlist) and handles the primary routing.
-- **Home Class:** represents the home data
+- **Home Class:** represents the data dealing with the homepage
   - **Properties:**
-    - `id`
-    - `title`,
-    - `posterPath`,
-    - `releaseDate`,
-    - `rating`, and
+    - `popularMovies`: Movie[]
+    - `isLoading`: bool
+    - `error`: String
     - `isWatched`.
-  - **Methods:** `toggleStatus()` to switch between "To Watch" and "Completed."
-- **Search Engine:** A utility class that handles asynchronous fetches to the external API, formatting raw JSON into application-ready objects.
-- **LocalStorage Handler:** A service class responsible for persisting the user's list in the browser so data isn't lost on refresh.
+  - **Methods:**
+    - `getPopularMovies()`: gets all movies in the popular category from the API
+- **Navbar**: represents all functionality done in the navbar, like searching
+  - **Properties**
+    - `searchResults`: Movies[]
+    - `isSearching`: bool
+    - `movieGenres`: Map<int, String>[]
+    - `tvGenres`: Map<int, String>[] -`genreCacheRef`: Map<String,Map<int, String>[]> -`searchCacheRef`: String -`abortControllerRef`: AbortController()
+  - **Methods**\
+     -`getSearchResults()`: gets the search results from the API, which is then set to `searchResults`
+
+- **Info**: represents all functionality done in the information page
+  - **Properties**
+    - `show`: Movie()
+    - `loading`: bool
+  - **Methods** -`getShow()`: gets the movie info from the api
+
+  **watchlist**: represents all functionality regarding updating, saving, and modifying the watchlist
+
+- **Properties**:
+  - `watchlist`: Movies[]
+
+- **Methods**
+  - `logWatchlist()`: helper debugger function that prints the current watchlist object
+  - `saveWatchlist()`: saves the current watchlist object to localStorage
+
+  - `addToWatchlist(show:Movie(), id:int, type:String)`: adds `show` to the watchlist
+
+  - `removeFromWatchlist(id:int, type:String)`: saves the current watchlist object to localStorage
+
+  - `empty()`: empties the list (FOR DEBUGGING ONLY!)
+  - `hasBeenSaved(show:Movie(), id:int, type:String)`: determines whether `show` has been saved to the watchlist
+
+- **Utils**: Utilitiy functions that serve no specific purpose, but improve code organization and speed
+- **Methods**
+- `getRequest(url:String)`: returns the formatted JSON of a get request from the TMDB API. Sends the get request with the required authorization headers.\
+  -`getPosterImg(path:String)`: returns the full url for the poster path, typically given by the API
 
 ---
 
@@ -29,15 +60,11 @@ The application follows a modular Frontend-First architecture (React/JavaScript)
 
 ### Dynamic Movie Search
 
-Users can search the vast database of The Movie Database (TMDb). As you type, the app fetches matching titles and displays them in a grid.
-
-- **Tech:** Fetch API, Debouncing logic, React State.
+Users can search the vast database of The Movie Database (TMDb).
 
 ### Watchlist Management
 
-With a single click, users can add any search result to their personal watchlist. Items can be filtered by "Pending" or "Watched."
-
-- **Tech:** JavaScript Array methods (`filter`, `map`), CSS Grid.
+With a single click, users can add any search result to their personal watchlist. Due to constraints, the watchlist is only in localStorage, meaning that the watchlist can only stay the same on one browser at a time.
 
 ### Persistent Storage
 
@@ -49,20 +76,17 @@ The app automatically saves your list to the browser's LocalStorage.
 
 ## 4. API Documentation
 
-This project consumes **The Movie Database (TMDb) API v3**.
+This project consumes **The Movie Database (TMDb) API v3**, which requires an API key to get started.
 
-- **Endpoints Used:**
-  - `GET /search/movie`: Used to find movies based on user string input.
-  - `GET /movie/{movie_id}`: Used to pull detailed metadata for specific entries.
-- **Data Handling:** The app receives a JSON object containing an array of results. We extract the `poster_path`, `vote_average`, and `overview` to populate our UI components.
-- **Authentication:** Requires an `api_key` passed as a query parameter.
+- [link to TMDB API documentation](https://developer.themoviedb.org/docs/getting-started)
+
   > **Note:** Ensure your key is stored in a `.env` file and not hardcoded into the source files.
 
 ---
 
 ## 5. Challenges and Decisions
 
-### The Challenge: Asynchronous State Sync
+### Asynchronous code
 
 The hardest part was ensuring that the UI updated immediately when a user added a movie, while simultaneously updating LocalStorage and ensuring no duplicate IDs were added.
 
@@ -73,13 +97,13 @@ The hardest part was ensuring that the UI updated immediately when a user added 
 
 ### Future Improvements
 
-If given more time, I would implement **Firebase Authentication** to allow users to access their watchlist across different devices, rather than being limited to one browser's local storage.
+If given more time, I would implement a mobile layout.
 
 ---
 
 ## 6. How to Run
 
-Follow these steps to get the project running locally:
+This website is available to the public at (https://ohaya-watch-me.vercel.app), but follow the instructions below to clone it on your device
 
 1.  **Clone the Repository:**
 

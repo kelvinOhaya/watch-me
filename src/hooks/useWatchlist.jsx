@@ -8,11 +8,6 @@ function useWatchlist() {
   );
 
   const logWatchlist = () => console.log(watchlist);
-  const loadWatchlist = () =>
-    localStorage.getItem("watchlist")
-      ? JSON.parse(localStorage.getItem("watchlist"))
-      : [];
-
   const saveWatchlist = () => {
     localStorage.setItem("watchlist", JSON.stringify(watchlist));
   };
@@ -25,7 +20,6 @@ function useWatchlist() {
     setWatchlist((prev) =>
       prev.filter((show) => !(show.id === id && show.type === type)),
     );
-    logWatchlist();
   };
 
   const hasBeenSaved = (show, id, type) => {
@@ -33,7 +27,6 @@ function useWatchlist() {
       watchlist.filter(
         (savedShow) => id === savedShow.id && type === savedShow.type,
       ).length > 0;
-    logWatchlist();
     return showWasFound;
   };
   //DEBUGGING PURPOSES ONLY
@@ -42,7 +35,6 @@ function useWatchlist() {
     addToWatchList,
     removeFromWatchList,
     hasBeenSaved,
-    loadWatchlist,
     saveWatchlist,
     watchlist,
     empty,
