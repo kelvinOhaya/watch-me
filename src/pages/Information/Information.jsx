@@ -25,7 +25,8 @@ function Information() {
   const [searchParams] = useSearchParams();
   const searchQuery =
     searchParams.get("searchQuery") || location.state?.searchQuery;
-  const prompt = `Hi Chat! Tell me a little bit about the ${show.type} called ${show.title || show.name}. I'd like to know the overview, when it released, and where I can watch it. Provide a trailer if it exists.`;
+  const prompt = `Hi Chat! Tell me a little bit about the ${show.type} called ${show.title || show.name} released on ${show.release_date || show.first_air_date}
+  . I'd like to know the overview, when it released, and where I can watch it. Provide a trailer if it exists.`;
 
   useEffect(() => {
     let active = true;
