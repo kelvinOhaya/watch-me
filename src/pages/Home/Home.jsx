@@ -10,14 +10,8 @@ import { gsap } from "gsap";
 const SECTION_ENTRY_DURATION = 0.3;
 
 function Home() {
-  const {
-    getPopularMovies,
-    popularMovies,
-    popularTvShows,
-    loading,
-    error,
-    setCurrentShow,
-  } = useHome();
+  const { getPopularMovies, popularMovies, popularTvShows, loading, error } =
+    useHome();
   const moviesRef = useRef(null);
   const tvRef = useRef(null);
 
@@ -93,7 +87,6 @@ function Home() {
               <PopularShow
                 key={`popular-${movie.id ?? index}`}
                 onClick={() => {
-                  setCurrentShow(movie);
                   navigate(`/info/${movie.id}`);
                 }}
                 show={movie}

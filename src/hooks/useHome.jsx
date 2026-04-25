@@ -7,7 +7,6 @@ function useHome() {
   const [popularTvShows, setPopularTvShows] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
-  const [currentShow, setCurrentShow] = useState({});
 
   const getPopularMovies = useCallback(async () => {
     setLoading(true);
@@ -49,8 +48,6 @@ function useHome() {
     popularTvShows,
     loading,
     error,
-    currentShow,
-    setCurrentShow,
   };
 }
 
