@@ -33,7 +33,7 @@ function Home() {
           opacity: 1,
           y: 0,
           duration: SECTION_ENTRY_DURATION,
-          stagger: 0.06,
+          stagger: 0.1,
           ease: "power1.out",
         },
       );
