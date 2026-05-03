@@ -49,8 +49,7 @@ function Home() {
     <div className={styles.bg}>
       <Navbar />
       <section className={styles.popularSection}>
-        <p className={styles.popularTitle}>Popular</p>
-        <h1>In Theaters: </h1>
+        <h1 className={styles.sectionTitle}>In Theaters</h1>
         {loading ? (
           <div className={styles.loadingState}>
             <p className={styles.loadingEyebrow}>Popular movies</p>
@@ -70,7 +69,7 @@ function Home() {
             ))}
           </div>
         )}
-        <h1>Series</h1>
+        <h1 className={styles.sectionTitle}>Series</h1>
         {loading ? (
           <div className={styles.loadingState}>
             <p className={styles.loadingEyebrow}>Popular TV</p>

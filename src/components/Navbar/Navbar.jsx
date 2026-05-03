@@ -4,12 +4,12 @@ import logoSrc from "../../assets/logo.svg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBookmark } from "@fortawesome/free-solid-svg-icons";
 import { Link, useNavigate } from "react-router-dom";
-import useNavbar from "../../hooks/useNavbar";
+// import useNavbar from "../../hooks/useNavbar";
 
 function Navbar() {
   const navigate = useNavigate();
   const [searchInput, setSearchInput] = useState();
-  const { getSearchResults, searchResults } = useNavbar();
+  // const { getSearchResults, searchResults } = useNavbar();
 
   return (
     <div className={styles.container}>

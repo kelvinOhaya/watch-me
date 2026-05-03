@@ -14,14 +14,11 @@
 /* Popular Section */
 .popularSection {
   display: flex;
+  height: fit-content;
   padding: 60px 0 0 0px;
   flex-direction: column;
   align-items: flex-start;
   gap: 32px;
-  h1 {
-    color: white;
-    padding-left: 32px;
-  }
 }
 
 .popularMovieList {
@@ -34,6 +31,13 @@
 }
 .popularMovieList::-webkit-scrollbar {
   display: none;
+}
+
+.sectionTitle {
+  color: white;
+  padding-left: 32px;
+  padding-top: 32px;
+  font-size: 56px !important;
 }
 
 .loadingState {
@@ -75,18 +79,6 @@
   opacity: 0.78;
 }
 
-.popularTitle {
-  color: var(--p, #ffa600);
-  margin-left: 32px;
-  text-align: center;
-  text-shadow: 0 0 20px var(--p400, #763500);
-  font-family: Helvetica;
-  font-size: 128px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: normal;
-}
-
 .popularShowList {
   display: flex;
   align-items: center;
@@ -110,7 +102,6 @@
   font-weight: 700;
   line-height: normal;
   text-align: left;
-  padding-left: 32px;
   width: 100%;
   margin-bottom: 32px;
 }
