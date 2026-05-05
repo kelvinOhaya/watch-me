@@ -77,9 +77,10 @@ function Information() {
         top: 0,
         left: 0,
         width: "100%",
-        minHeight: "100vh",
+        height: "fit-content",
         display: "flex",
         flexDirection: "column",
+        flexWrap: "wrap",
       }}
     >
       <div className={styles.bg}></div>
@@ -114,7 +115,7 @@ function Information() {
         <div className={styles.topContent}>
           {/* Title & Description */}
           <div>
-            <h1>{show.title || show.name}</h1>
+            <h1 className={styles.showTitle}>{show.title || show.name}</h1>
             <p
               style={{
                 color: "white",
@@ -123,6 +124,7 @@ function Information() {
                 fontStyle: "normal",
                 fontWeight: 400,
                 lineHeight: "normal",
+                opacity: 0.5,
               }}
             >
               {show.type + " · "}{" "}
@@ -202,17 +204,22 @@ function Information() {
             style={{
               margin: "32px 0",
               display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
-              alignSelf: "stretch",
-              height: 500,
+              justifyContent: "space-evenly",
+              alignItems: "flex-start",
+              minHeight: 100,
               gap: 32,
             }}
           >
             {show.hasPoster ? (
               <img
                 src={fullPosterUrl}
-                style={{ height: "100%", borderRadius: 32 }}
+                style={{
+                  flex: 1,
+                  width: "100%",
+                  maxWidth: 300,
+                  borderRadius: 32,
+                  objectFit: "cover",
+                }}
                 alt="Movie Logo"
               />
             ) : (
@@ -233,7 +240,14 @@ function Information() {
             )}
             {show.hasTrailer ? (
               <iframe
-                style={{ height: "100%", flex: 1, maxWidth: 800 }}
+                style={{
+                  position: "relative",
+                  flex: 1,
+                  alignSelf: "center",
+                  minHeight: 450,
+                  maxWidth: "calc((450px/9px)*16px)",
+                  borderRadius: 5,
+                }}
                 src={`https://www.youtube.com/embed/${show?.videos?.results?.filter((e) => e.type === "Trailer")[0]?.key}`}
                 title="YouTube video player"
                 frameBorder="0"
@@ -262,13 +276,13 @@ function Information() {
             <div
               style={{
                 padding: 16,
-                height: "100%",
-                flex: 1,
-                maxWidth: 350,
+                maxWidth: 200,
                 display: "flex",
                 flexDirection: "column",
                 borderRadius: 24,
                 background: "#7c7c7c55",
+                alignSelf: "center",
+                flex: 1,
               }}
             >
               <p
@@ -296,7 +310,11 @@ function Information() {
                   .map((company, i) => (
                     <img
                       key={i}
-                      style={{ height: 32 }}
+                      style={{
+                        maxHeight: "32px",
+                        maxWidth: "120px",
+                        aspectRatio: "auto",
+                      }}
                       src={fullLogoUrl(company.logo_path)}
                     />
                   ))}
@@ -312,6 +330,7 @@ function Information() {
             alignItems: "center",
             alignSelf: "stretch",
             marginBottom: 32,
+            flexWrap: "wrap",
           }}
         >
           {show.genres?.map((id, key) => (

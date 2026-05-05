@@ -35,17 +35,52 @@
   display: flex;
   padding-right: 32px;
   justify-content: space-between;
-  align-self: stretch;
   text-align: left;
   margin-top: 81px;
   color: white;
 }
 
+@media (max-width: 700px) {
+  .topContent {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+}
+
+@media (max-width: 830px) {
+  main {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+  }
+  iframe {
+    align-self: center;
+  }
+  img {
+    align-self: center;
+  }
+}
 .contentLayer {
   position: relative;
   z-index: 1;
   height: fit-content;
   padding-top: 81px;
+}
+
+.showTitle {
+  color: #fff;
+  font-family: Helvetica;
+  font-size: 3rem;
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+@media (max-width: 700px) {
+  .showTitle {
+    font-size: clamp(2.5rem, 8vw, 3rem);
+  }
 }
 
 .backRow {
@@ -95,68 +130,6 @@
   display: inline;
 }
 
-@media (max-width: 768px) {
-  .topContent {
-    flex-direction: column;
-    padding-right: 0;
-    gap: 16px;
-  }
-
-  .backRow {
-    margin-bottom: 0;
-  }
-
-  .backButton {
-    padding: 12px;
-    gap: 0;
-    min-width: 48px;
-    justify-content: center;
-  }
-
-  .backLabel {
-    display: none;
-  }
-
-  .backArrow {
-    font-size: 20px;
-  }
-
-  .contentLayer {
-    padding: 16px !important;
-    min-height: auto;
-  }
-
-  .bgImg {
-    filter: blur(20px);
-  }
-
-  main {
-    margin: 16px 0 !important;
-    height: auto !important;
-    flex-direction: column !important;
-    gap: 16px !important;
-  }
-
-  main img,
-  main iframe,
-  main > div {
-    width: 100% !important;
-    height: 300px !important;
-    max-width: 100% !important;
-  }
-
-  .skeletonWrapper {
-    flex-direction: column;
-    gap: 16px;
-    padding: 16px;
-  }
-
-  .skeletonPoster {
-    width: 100%;
-    height: 280px;
-  }
-}
-
 .movieAndDescription {
   display: flex;
   flex-direction: column;
@@ -166,10 +139,10 @@
   h1 {
     color: #fff;
     font-family: Helvetica;
-    font-size: 46px;
     font-style: normal;
     font-weight: 700;
     line-height: normal;
+    font-size: 3rem;
   }
   p {
     color: #7c7c7c;
@@ -225,135 +198,4 @@
 .loadingStatus {
   margin: 0 auto;
   width: min(720px, 100%);
-}
-
-/* Skeleton loading styles */
-.skeletonWrapper {
-  display: flex;
-  align-items: flex-start;
-  gap: 32px;
-  width: 100%;
-  padding: 24px;
-  max-width: 1200px;
-}
-
-.skeletonPoster {
-  width: 320px;
-  height: 460px;
-  border-radius: 24px;
-  background: linear-gradient(90deg, #222 0%, #2a2a2a 50%, #222 100%);
-  animation: pulse 1.2s infinite ease-in-out;
-}
-
-.skeletonContent {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-
-.skelTitle {
-  width: 50%;
-  height: 36px;
-  border-radius: 8px;
-  background: linear-gradient(90deg, #2b2b2b 0%, #333 50%, #2b2b2b 100%);
-  animation: pulse 1.2s infinite ease-in-out;
-}
-
-.skelMeta {
-  width: 30%;
-  height: 18px;
-  border-radius: 8px;
-  background: linear-gradient(90deg, #2b2b2b 0%, #333 50%, #2b2b2b 100%);
-  animation: pulse 1.2s infinite ease-in-out;
-}
-
-.skelLines {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  margin-top: 8px;
-}
-
-.skelLine,
-.skelLineShort,
-.skelLineMedium {
-  height: 14px;
-  border-radius: 6px;
-  background: linear-gradient(90deg, #2b2b2b 0%, #333 50%, #2b2b2b 100%);
-  animation: pulse 1.2s infinite ease-in-out;
-}
-
-.skelLine {
-  width: 100%;
-}
-.skelLineShort {
-  width: 60%;
-}
-.skelLineMedium {
-  width: 80%;
-}
-
-@keyframes pulse {
-  0% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0.6;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .skeletonPoster,
-  .skelTitle,
-  .skelMeta,
-  .skelLine,
-  .skelLineShort,
-  .skelLineMedium {
-    animation: none;
-  }
-}
-
-.overview {
-  /* Base styles handled by inline styles */
-}
-
-@media (max-width: 768px) {
-  .overview {
-    font-size: 16px !important;
-    line-height: 1.5 !important;
-  }
-}
-
-.contentMain {
-  /* Base styles handled by inline styles */
-}
-
-.trailer {
-  /* Base styles handled by inline styles */
-}
-
-.producersContainer {
-  /* Base styles handled by inline styles */
-}
-
-@media (max-width: 768px) {
-  .contentMain {
-    height: auto !important;
-    flex-direction: column;
-  }
-
-  .trailer {
-    width: 100%;
-    min-height: 300px;
-    max-width: 100% !important;
-  }
-
-  .producersContainer {
-    gap: 8px !important;
-    padding-top: 8px !important;
-  }
 }
