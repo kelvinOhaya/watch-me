@@ -5,7 +5,7 @@ import Navbar from "../../components/Navbar/Navbar";
 import PopularShow from "../../components/PopularShow/PopularShow";
 import FeaturedShow from "../../components/FeaturedShow/FeaturedShow";
 import useHome from "../../hooks/useHome";
-import { motion, stagger } from "framer-motion";
+import { motion } from "framer-motion";
 
 const SECTION_ENTRY_DURATION = 0.3;
 
@@ -36,63 +36,65 @@ function Home() {
 
   return (
     <div className={styles.bg}>
-      <Navbar />
       {!loading && (
-        <motion.section tabIndex={0} className={styles.popularSection}>
-          <>
-            <motion.h1
-              initial={{ y: 16, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ duration: 0.3, ease: "easeOut" }}
-              className={styles.sectionTitle}
-            >
-              In Theaters
-            </motion.h1>
-            <motion.div
-              variants={containerVariant}
-              initial="initial"
-              animate="animate"
-              className={styles.popularMovieList}
-            >
-              {popularMovies.map((movie, index) => (
-                <motion.div variants={showVariant}>
-                  <PopularShow
-                    key={`popular-${movie.id ?? index}`}
-                    show={movie}
-                  />
-                </motion.div>
-              ))}
-            </motion.div>
-          </>
-          <>
-            <motion.h1
-              initial={{ y: 16, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ duration: 0.3, ease: "easeOut" }}
-              className={styles.sectionTitle}
-            >
-              Series
-            </motion.h1>
-            <motion.div
-              variants={containerVariant}
-              initial="initial"
-              animate="animate"
-              className={styles.popularMovieList}
-            >
-              {popularTvShows.map((movie, index) => (
-                <motion.div variants={showVariant}>
-                  <PopularShow
-                    key={`popular-${movie.id ?? index}`}
-                    onClick={() => {
-                      navigate(`/info/${movie.id}`);
-                    }}
-                    show={movie}
-                  />
-                </motion.div>
-              ))}
-            </motion.div>
-          </>
-        </motion.section>
+        <>
+          <Navbar />
+          <motion.section tabIndex={0} className={styles.popularSection}>
+            <>
+              <motion.h1
+                initial={{ y: 16, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ duration: 0.3, ease: "easeOut" }}
+                className={styles.sectionTitle}
+              >
+                In Theaters
+              </motion.h1>
+              <motion.div
+                variants={containerVariant}
+                initial="initial"
+                animate="animate"
+                className={styles.popularMovieList}
+              >
+                {popularMovies.map((movie, index) => (
+                  <motion.div variants={showVariant}>
+                    <PopularShow
+                      key={`popular-${movie.id ?? index}`}
+                      show={movie}
+                    />
+                  </motion.div>
+                ))}
+              </motion.div>
+            </>
+            <>
+              <motion.h1
+                initial={{ y: 16, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ duration: 0.3, ease: "easeOut" }}
+                className={styles.sectionTitle}
+              >
+                Series
+              </motion.h1>
+              <motion.div
+                variants={containerVariant}
+                initial="initial"
+                animate="animate"
+                className={styles.popularMovieList}
+              >
+                {popularTvShows.map((movie, index) => (
+                  <motion.div variants={showVariant}>
+                    <PopularShow
+                      key={`popular-${movie.id ?? index}`}
+                      onClick={() => {
+                        navigate(`/info/${movie.id}`, { viewTransition: true });
+                      }}
+                      show={movie}
+                    />
+                  </motion.div>
+                ))}
+              </motion.div>
+            </>
+          </motion.section>
+        </>
       )}
     </div>
   );

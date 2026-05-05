@@ -63,12 +63,15 @@ function FeaturedShow({
       className={styles.container}
       ref={container}
       onClick={() =>
-        navigate({
-          pathname: `/info/${show.media_type || type}/${show.id}`,
-          search: searchQuery
-            ? `?searchQuery=${encodeURIComponent(searchQuery)}`
-            : "",
-        })
+        navigate(
+          {
+            pathname: `/info/${show.media_type || type}/${show.id}`,
+            search: searchQuery
+              ? `?searchQuery=${encodeURIComponent(searchQuery)}`
+              : "",
+          },
+          { viewTransition: true },
+        )
       }
       aria-label={`Open details for ${title}`}
     >

@@ -53,7 +53,7 @@ function Navbar() {
             onClick={(e) => {
               e.preventDefault();
               if (!searchInput.trim()) return;
-              navigate(`/search/${searchInput}`);
+              navigate(`/search/${searchInput}`, { viewTransition: true });
             }}
           >
             <span style={{ color: "white", fontSize: 16 }}>Search</span>

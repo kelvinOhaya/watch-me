@@ -7,7 +7,7 @@ function useWatchlist() {
       : [],
   );
 
-  const logWatchlist = () => console.log(watchlist);
+  // const logWatchlist = () => console.log(watchlist);
   const saveWatchlist = () => {
     localStorage.setItem("watchlist", JSON.stringify(watchlist));
   };

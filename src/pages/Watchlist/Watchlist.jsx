@@ -8,7 +8,7 @@ import { gsap } from "gsap";
 
 const SECTION_ENTRY_DURATION = 1;
 
-function Search() {
+function WatchList() {
   const { watchlist, saveWatchlist } = useWatchlist();
   const { movieGenres, tvGenres } = useInfo();
   const moviesRef = useRef(null);
@@ -45,7 +45,6 @@ function Search() {
   if (watchlist) {
     return (
       <>
-        <Navbar />
         <div className={styles.page}>
           <h1 className={styles.title}>Watchlist</h1>
           <section>
@@ -87,4 +86,4 @@ function Search() {
   return <h1>Loading Watchlist...</h1>;
 }
 
-export default Search;
+export default WatchList;

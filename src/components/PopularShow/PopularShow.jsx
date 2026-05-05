@@ -49,7 +49,9 @@ function PopularShow({ show }) {
       ref={container}
       onClick={() => {
         getShow(show);
-        navigate(`/info/${show.type}/${show.id || show.series_id}`);
+        navigate(`/info/${show.type}/${show.id || show.series_id}`, {
+          viewTransition: true,
+        });
       }}
     >
       <img className={styles.showImg} src={posterFullUrl} />

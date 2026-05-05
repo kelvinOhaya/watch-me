@@ -33,7 +33,7 @@ function useHome() {
       setPopularMovies(movieResults);
       setPopularTvShows(tvShowResults);
     } catch (error) {
-      console.log(`Error trying to access the movies: \n ${error}`);
+      // console.log(`Error trying to access the movies: \n ${error}`);
       setError(error.message || "Failed to fetch popular movies.");
       setPopularMovies([]);
       return [];

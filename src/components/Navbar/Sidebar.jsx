@@ -91,7 +91,7 @@ function Sidebar() {
               <Option
                 icon={faBookmark}
                 description={"Watchlist"}
-                onClick={() => navigate("/watchlist")}
+                onClick={() => navigate("/watchlist", { viewTransition: true })}
               />
             </motion.div>
           )}

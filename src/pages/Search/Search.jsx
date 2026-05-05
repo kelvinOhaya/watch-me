@@ -94,7 +94,6 @@ function Search() {
   if (isSearching)
     return (
       <>
-        <Navbar />
         <div className={styles.page}>
           <h1 className={styles.title}>Searching for "{searchQuery}"</h1>
         </div>
@@ -104,7 +103,6 @@ function Search() {
   if (hasRenderableResults)
     return (
       <>
-        <Navbar />
         <div className={styles.page}>
           <h1 className={styles.title}>Results for "{searchQuery}"</h1>
           <section>
@@ -144,7 +142,6 @@ function Search() {
   if (!hasResolvedQuery) {
     return (
       <>
-        <Navbar />
         <div className={styles.page}>
           <h1 className={styles.title}>Searching for "{searchQuery}"</h1>
         </div>
@@ -154,7 +151,6 @@ function Search() {
 
   return (
     <>
-      <Navbar />
       <div className={styles.page}>
         <h1 className={styles.title}>Results for "{searchQuery}"</h1>
         <PageStatus
