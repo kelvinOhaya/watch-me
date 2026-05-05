@@ -52,9 +52,7 @@ function PopularShow({ show }) {
         navigate(`/info/${show.type}/${show.id || show.series_id}`);
       }}
     >
-      <div style={{ height: "100%", alignContent: "center", minWidth: 200 }}>
-        <img className={styles.showImg} src={posterFullUrl} />
-      </div>
+      <img className={styles.showImg} src={posterFullUrl} />
       <div className={styles.info}>
         <div className={styles.header}>
           <h1>{show.title || show.name}</h1>

@@ -113,13 +113,7 @@ function Information() {
         ) : null}
         <div className={styles.topContent}>
           {/* Title & Description */}
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              color: "white",
-            }}
-          >
+          <div>
             <h1>{show.title || show.name}</h1>
             <p
               style={{

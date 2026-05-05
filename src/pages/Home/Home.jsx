@@ -1,99 +1,99 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./Home.module.css";
 import Navbar from "../../components/Navbar/Navbar";
 import PopularShow from "../../components/PopularShow/PopularShow";
 import FeaturedShow from "../../components/FeaturedShow/FeaturedShow";
 import useHome from "../../hooks/useHome";
-import { gsap } from "gsap";
+import { motion, stagger } from "framer-motion";
 
 const SECTION_ENTRY_DURATION = 0.3;
 
 function Home() {
-  const { getPopularMovies, popularMovies, popularTvShows, loading, error } =
+  const { getPopularMovies, popularMovies, popularTvShows, loading } =
     useHome();
-  const moviesRef = useRef(null);
-  const tvRef = useRef(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     getPopularMovies();
   }, [getPopularMovies]);
 
-  useEffect(() => {
-    const animateItems = (items) => {
-      if (!items.length) return;
-
-      gsap.fromTo(
-        items,
-        {
-          opacity: 0,
-          y: 5,
-        },
-        {
-          opacity: 1,
-          y: 0,
-          duration: SECTION_ENTRY_DURATION,
-          stagger: 0.1,
-          ease: "power1.out",
-        },
-      );
-    };
-
-    animateItems(Array.from(moviesRef.current?.children ?? []));
-    animateItems(Array.from(tvRef.current?.children ?? []));
-  }, [popularMovies, popularTvShows]);
-
-  const navigate = useNavigate();
+  //variants
+  const containerVariant = {
+    initial: { opacity: 0 },
+    animate: {
+      opacity: 1,
+      transition: { staggerChildren: 0.1 },
+    },
+  };
+  const showVariant = {
+    initial: {
+      y: 8,
+      opacity: 0,
+    },
+    animate: { y: 0, opacity: 1 },
+  };
 
   return (
     <div className={styles.bg}>
       <Navbar />
-      <section className={styles.popularSection}>
-        <h1 className={styles.sectionTitle}>In Theaters</h1>
-        {loading ? (
-          <div className={styles.loadingState}>
-            <p className={styles.loadingEyebrow}>Popular movies</p>
-            <p className={styles.loadingText}>
-              Loading the current cinema lineup
-            </p>
-            <p className={styles.loadingHint}>
-              Finding the newest releases and poster art
-            </p>
-          </div>
-        ) : error ? (
-          <p style={{ color: "#ff9c9c" }}>{error}</p>
-        ) : (
-          <div className={styles.popularMovieList} ref={moviesRef}>
-            {popularMovies.map((movie, index) => (
-              <PopularShow key={`popular-${movie.id ?? index}`} show={movie} />
-            ))}
-          </div>
-        )}
-        <h1 className={styles.sectionTitle}>Series</h1>
-        {loading ? (
-          <div className={styles.loadingState}>
-            <p className={styles.loadingEyebrow}>Popular TV</p>
-            <p className={styles.loadingText}>Loading trending series</p>
-            <p className={styles.loadingHint}>
-              Pulling the latest episodes and season data
-            </p>
-          </div>
-        ) : error ? (
-          <p style={{ color: "#ff9c9c" }}>{error}</p>
-        ) : (
-          <div className={styles.popularMovieList} ref={tvRef}>
-            {popularTvShows.map((movie, index) => (
-              <PopularShow
-                key={`popular-${movie.id ?? index}`}
-                onClick={() => {
-                  navigate(`/info/${movie.id}`);
-                }}
-                show={movie}
-              />
-            ))}
-          </div>
-        )}
-      </section>
+      {!loading && (
+        <motion.section tabIndex={0} className={styles.popularSection}>
+          <>
+            <motion.h1
+              initial={{ y: 16, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ duration: 0.3, ease: "easeOut" }}
+              className={styles.sectionTitle}
+            >
+              In Theaters
+            </motion.h1>
+            <motion.div
+              variants={containerVariant}
+              initial="initial"
+              animate="animate"
+              className={styles.popularMovieList}
+            >
+              {popularMovies.map((movie, index) => (
+                <motion.div variants={showVariant}>
+                  <PopularShow
+                    key={`popular-${movie.id ?? index}`}
+                    show={movie}
+                  />
+                </motion.div>
+              ))}
+            </motion.div>
+          </>
+          <>
+            <motion.h1
+              initial={{ y: 16, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ duration: 0.3, ease: "easeOut" }}
+              className={styles.sectionTitle}
+            >
+              Series
+            </motion.h1>
+            <motion.div
+              variants={containerVariant}
+              initial="initial"
+              animate="animate"
+              className={styles.popularMovieList}
+            >
+              {popularTvShows.map((movie, index) => (
+                <motion.div variants={showVariant}>
+                  <PopularShow
+                    key={`popular-${movie.id ?? index}`}
+                    onClick={() => {
+                      navigate(`/info/${movie.id}`);
+                    }}
+                    show={movie}
+                  />
+                </motion.div>
+              ))}
+            </motion.div>
+          </>
+        </motion.section>
+      )}
     </div>
   );
 }

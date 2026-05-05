@@ -1,9 +1,9 @@
 .bg {
   position: absolute;
-  top: 0;
+  top: 81px;
   left: 0;
   width: 100%;
-  height: 100%;
+  height: calc(100% - 81px);
   z-index: 0;
   pointer-events: none;
   display: flex;
@@ -37,12 +37,15 @@
   justify-content: space-between;
   align-self: stretch;
   text-align: left;
+  margin-top: 81px;
+  color: white;
 }
 
 .contentLayer {
   position: relative;
   z-index: 1;
   height: fit-content;
+  padding-top: 81px;
 }
 
 .backRow {
@@ -57,7 +60,6 @@
   gap: 10px;
   padding: 12px 18px;
   border-radius: 999px;
-  border: 1px solid rgba(255, 166, 0, 0.28);
   background: linear-gradient(
     180deg,
     rgba(255, 166, 0, 0.16),
@@ -70,14 +72,12 @@
   letter-spacing: 0.02em;
   transition:
     transform 0.2s ease-out,
-    box-shadow 0.2s ease-out,
-    border-color 0.2s ease-out;
+    box-shadow 0.2s ease-out;
 }
 
 .backButton:hover {
   transform: translateY(-1px);
   box-shadow: 0 10px 22px rgba(0, 0, 0, 0.26);
-  border-color: rgba(255, 166, 0, 0.5);
 }
 
 .backButton:focus-visible {
@@ -96,8 +96,14 @@
 }
 
 @media (max-width: 768px) {
+  .topContent {
+    flex-direction: column;
+    padding-right: 0;
+    gap: 16px;
+  }
+
   .backRow {
-    margin-bottom: 16px;
+    margin-bottom: 0;
   }
 
   .backButton {
@@ -113,6 +119,41 @@
 
   .backArrow {
     font-size: 20px;
+  }
+
+  .contentLayer {
+    padding: 16px !important;
+    min-height: auto;
+  }
+
+  .bgImg {
+    filter: blur(20px);
+  }
+
+  main {
+    margin: 16px 0 !important;
+    height: auto !important;
+    flex-direction: column !important;
+    gap: 16px !important;
+  }
+
+  main img,
+  main iframe,
+  main > div {
+    width: 100% !important;
+    height: 300px !important;
+    max-width: 100% !important;
+  }
+
+  .skeletonWrapper {
+    flex-direction: column;
+    gap: 16px;
+    padding: 16px;
+  }
+
+  .skeletonPoster {
+    width: 100%;
+    height: 280px;
   }
 }
 
@@ -184,4 +225,135 @@
 .loadingStatus {
   margin: 0 auto;
   width: min(720px, 100%);
+}
+
+/* Skeleton loading styles */
+.skeletonWrapper {
+  display: flex;
+  align-items: flex-start;
+  gap: 32px;
+  width: 100%;
+  padding: 24px;
+  max-width: 1200px;
+}
+
+.skeletonPoster {
+  width: 320px;
+  height: 460px;
+  border-radius: 24px;
+  background: linear-gradient(90deg, #222 0%, #2a2a2a 50%, #222 100%);
+  animation: pulse 1.2s infinite ease-in-out;
+}
+
+.skeletonContent {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.skelTitle {
+  width: 50%;
+  height: 36px;
+  border-radius: 8px;
+  background: linear-gradient(90deg, #2b2b2b 0%, #333 50%, #2b2b2b 100%);
+  animation: pulse 1.2s infinite ease-in-out;
+}
+
+.skelMeta {
+  width: 30%;
+  height: 18px;
+  border-radius: 8px;
+  background: linear-gradient(90deg, #2b2b2b 0%, #333 50%, #2b2b2b 100%);
+  animation: pulse 1.2s infinite ease-in-out;
+}
+
+.skelLines {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.skelLine,
+.skelLineShort,
+.skelLineMedium {
+  height: 14px;
+  border-radius: 6px;
+  background: linear-gradient(90deg, #2b2b2b 0%, #333 50%, #2b2b2b 100%);
+  animation: pulse 1.2s infinite ease-in-out;
+}
+
+.skelLine {
+  width: 100%;
+}
+.skelLineShort {
+  width: 60%;
+}
+.skelLineMedium {
+  width: 80%;
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.6;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skeletonPoster,
+  .skelTitle,
+  .skelMeta,
+  .skelLine,
+  .skelLineShort,
+  .skelLineMedium {
+    animation: none;
+  }
+}
+
+.overview {
+  /* Base styles handled by inline styles */
+}
+
+@media (max-width: 768px) {
+  .overview {
+    font-size: 16px !important;
+    line-height: 1.5 !important;
+  }
+}
+
+.contentMain {
+  /* Base styles handled by inline styles */
+}
+
+.trailer {
+  /* Base styles handled by inline styles */
+}
+
+.producersContainer {
+  /* Base styles handled by inline styles */
+}
+
+@media (max-width: 768px) {
+  .contentMain {
+    height: auto !important;
+    flex-direction: column;
+  }
+
+  .trailer {
+    width: 100%;
+    min-height: 300px;
+    max-width: 100% !important;
+  }
+
+  .producersContainer {
+    gap: 8px !important;
+    padding-top: 8px !important;
+  }
 }
