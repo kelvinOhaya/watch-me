@@ -3,8 +3,11 @@ import { gsap } from "gsap";
 import styles from "./WatchListBtn.module.css";
 import Bookmark from "../Bookmark";
 import useWatchlist from "../../hooks/useWatchlist";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBookmark } from "@fortawesome/free-solid-svg-icons";
+import { motion } from "framer-motion";
 
-function WatchListBtn({ id, show, showType }) {
+function WatchListBtn({ id, show, showType, size = 32 }) {
   const {
     addToWatchList,
     removeFromWatchList,
@@ -20,8 +23,6 @@ function WatchListBtn({ id, show, showType }) {
     saveWatchlist();
   }, [watchlist, saveWatchlist]);
   const buttonRef = useRef(null);
-  const isInitialRender = useRef(true);
-
   const handleClick = () => {
     hasBeenAdded
       ? removeFromWatchList(id, showType)
@@ -29,61 +30,24 @@ function WatchListBtn({ id, show, showType }) {
     setHasBeenAdded((prev) => !prev);
   };
 
-  useLayoutEffect(() => {
-    const button = buttonRef.current;
-    if (!button) return;
-
-    const label = button.querySelector(`.${styles.label}`);
-    const icon = button.querySelector("svg path");
-
-    if (!label || !icon) return;
-
-    if (isInitialRender.current) {
-      gsap.set(button, { scale: 1 });
-      gsap.set(label, { color: hasBeenAdded ? "var(--p100)" : "var(--p500)" });
-      gsap.set(icon, { fill: hasBeenAdded ? "var(--p100)" : "var(--p500)" });
-      isInitialRender.current = false;
-      return;
-    }
-
-    const timeline = gsap.timeline({
-      defaults: { duration: 0.3, ease: "power2.out" },
-    });
-
-    timeline
-      .to(
-        button,
-        {
-          scale: 1,
-        },
-        0,
-      )
-      .to(
-        label,
-        { color: hasBeenAdded ? "var(--p100)" : "var(--p500)", duration: 0.1 },
-        0,
-      )
-      .to(
-        icon,
-        { fill: hasBeenAdded ? "var(--p100)" : "var(--p500)", duration: 0.1 },
-        0,
-      );
-
-    return () => timeline.kill();
-  }, [hasBeenAdded]);
-
   return (
-    <button
+    <motion.button
       className={styles.button}
       ref={buttonRef}
       onClick={handleClick}
-      style={{ background: hasBeenAdded ? "var(--p500)" : "var(--pg100)" }}
+      style={{ fontSize: size }}
+      animate={{
+        marginLeft: "auto",
+        background: "transparent",
+      }}
+      transition={{ duration: 0.3 }}
     >
-      <span className={styles.label}>
-        {hasBeenAdded ? "REMOVE FROM WATCHLIST" : "ADD TO WATCHLIST"}{" "}
-        <Bookmark fill={hasBeenAdded ? "var(--p100)" : "var(--p500)"} />
-      </span>
-    </button>
+      <FontAwesomeIcon
+        icon={faBookmark}
+        size={size}
+        fill={hasBeenAdded ? "var(--p100)" : "#ffffffaa"}
+      />
+    </motion.button>
   );
 }
 

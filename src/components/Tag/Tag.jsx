@@ -1,19 +1,8 @@
 import React from "react";
+import styles from "./Tag.module.css";
 
 function Tag({ description }) {
-  return (
-    <span
-      style={{
-        borderRadius: 24,
-        border: "2px solid #7c7c7c",
-        color: "#7c7c7c",
-        padding: "8px 16px",
-        fontSize: 16,
-      }}
-    >
-      {description}
-    </span>
-  );
+  return <span className={styles.tag}>{description}</span>;
 }
 
 export default Tag;

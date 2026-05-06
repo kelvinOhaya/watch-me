@@ -103,6 +103,7 @@ function Search() {
   if (hasRenderableResults)
     return (
       <>
+        <Navbar />
         <div className={styles.page}>
           <h1 className={styles.title}>Results for "{searchQuery}"</h1>
           <section>

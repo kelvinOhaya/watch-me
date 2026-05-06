@@ -2,7 +2,7 @@
   position: relative;
   display: flex;
   width: fit-content;
-  padding: 16px 32px;
+  padding: 8px 16px;
   justify-content: center;
   align-items: center;
   gap: 16px;
@@ -18,9 +18,7 @@
   display: flex;
   gap: 16px;
   justify-content: center;
-  color: var(--bg);
   font-family: Helvetica;
-  font-size: 24px;
   font-style: normal;
   font-weight: 700;
   line-height: normal;

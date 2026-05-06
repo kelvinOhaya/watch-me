@@ -13,8 +13,10 @@
 
 .content {
   position: relative;
+  top: 30px;
+  right: -15px;
   width: 300px;
-  background-color: #000000;
+  background-color: #000000ef;
   border-radius: 0 0 20px 20px;
   padding: 16px;
   display: flex;
@@ -31,7 +33,6 @@
   display: flex;
   position: relative;
   align-items: center;
-  gap: 16px;
   width: 100%;
   min-width: 0;
   font-size: 16px;
@@ -76,10 +77,11 @@
     border-radius: 32px;
     border: none;
     padding: 4px 8px;
-    background: var(
+    /* background: var(
       --pg100,
       linear-gradient(290deg, #ffa600 10.1%, var(--p-200, #cf7f00) 52.4%)
-    );
+    ); */
+    background: transparent;
     color: white;
     font-weight: bold;
     transition: 0.2s box-shadow ease-out;

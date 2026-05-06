@@ -3,7 +3,7 @@
   top: 81px;
   left: 0;
   width: 100%;
-  height: calc(100% - 81px);
+  height: 100vh;
   z-index: 0;
   pointer-events: none;
   display: flex;
@@ -37,7 +37,61 @@
   justify-content: space-between;
   text-align: left;
   margin-top: 81px;
+  gap: 16px;
   color: white;
+}
+.titleTagWppr {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.poster {
+  border-radius: 8px;
+  height: 100%;
+  width: 100%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: #111;
+  display: block;
+}
+
+.desktopPosterWrap {
+  position: relative;
+  height: 100%;
+  flex: 0 0 clamp(180px, 22vw, 280px);
+  min-width: 180px;
+  padding-right: 8px;
+}
+
+main {
+  display: flex;
+  height: 300px;
+}
+
+.logo {
+  max-height: 32px;
+  max-width: 120px;
+  aspect-ratio: auto;
+}
+
+iframe {
+  flex: 1;
+  height: 100%;
+  position: relative;
+  align-self: center;
+  border-radius: 5px;
+  max-width: 500px;
+}
+
+.overview {
+  color: #fff;
+  font-family: Helvetica;
+  font-size: clamp(0.7rem, 1rem + 5vw, 1rem);
+  font-style: normal;
+  font-weight: 400;
+  line-height: 27px;
 }
 
 @media (max-width: 700px) {
@@ -49,22 +103,145 @@
   }
 }
 
+.mobileContentContainer {
+  display: flex;
+  overflow: hidden;
+}
+
 @media (max-width: 830px) {
-  main {
+  .mobileContentContainer {
+    gap: 16px;
+    background: #00000055;
+    padding: 16px;
+    border-radius: 16px;
+    flex-wrap: wrap;
+    /* prefer a vh-based cap so very narrow screens still get usable height */
+    max-height: min(60vh, 50vw);
+    width: 90vw;
+    display: flex;
+    flex-direction: row !important;
+    overflow-y: auto;
+    align-items: stretch; /* allow poster to stretch to container height */
+  }
+
+  .mobileInfoCol {
     display: flex;
     flex-direction: column;
-    align-items: stretch;
+    flex: 1 1 auto;
+    min-width: 0; /* allow children to shrink inside flex */
+    overflow: hidden;
   }
-  iframe {
-    align-self: center;
+
+  .mobileHeader {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 8px;
+    align-items: flex-start;
   }
-  img {
-    align-self: center;
+
+  .logo {
+    height: 20px;
   }
+
+  .poster {
+    height: 100%;
+    /* use background image instead of <img> so element can fill remaining height */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    /* limit width but fill vertical space of the container */
+    max-width: 40%;
+    width: auto;
+    flex-shrink: 0;
+    /* ensure the poster always gets space in flex layout */
+    flex-basis: 40%;
+    min-width: 110px;
+    min-height: 140px;
+    background-color: #111;
+    display: block;
+  }
+
+  .overview {
+    flex: 1 1 auto;
+    overflow: auto;
+    margin-bottom: 16px;
+    /* keep the overview usable on short viewports and narrow viewports */
+    max-height: min(40vh, 50vh);
+    font-size: clamp(0.55rem, 1rem + 3vw, 1rem);
+    word-break: break-word;
+    hyphens: auto;
+  }
+
+  .contentLayer {
+    max-width: 60vw;
+    padding: 16px;
+    align-items: center;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  /* Mobile override: make title smaller and regular weight */
+  .showTitle {
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.2;
+  }
+}
+
+/* Very small screens tweaks */
+@media (max-width: 360px) {
+  .mobileContentContainer {
+    gap: 8px;
+    padding: 8px;
+    width: 96vw;
+    max-height: min(70vh, 60vw);
+  }
+
+  .mobileInfoCol {
+    padding: 8px 0;
+  }
+
+  .poster {
+    max-width: 32%;
+    height: 100%;
+    max-height: none;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    flex-basis: 32%;
+    min-width: 80px;
+    min-height: 120px;
+  }
+
+  .overview {
+    font-size: clamp(0.5rem, 0.9rem + 2vw, 0.95rem);
+    max-height: 35vh;
+  }
+
+  /* make tag container wrap more tightly via tag module; ensure it doesn't overflow */
+  .mobileInfoCol > div {
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+}
+
+.producersContainer {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 24px;
+  background: #7c7c7c55;
+  align-items: center;
+  height: 100%;
+  max-width: fit-content;
+  align-self: center;
 }
 .contentLayer {
   position: relative;
   z-index: 1;
+  width: 100%;
   height: fit-content;
   padding-top: 81px;
 }
@@ -72,15 +249,9 @@
 .showTitle {
   color: #fff;
   font-family: Helvetica;
-  font-size: 3rem;
+  font-size: clamp(2rem, 2vw + 0.75rem, 4rem);
   font-weight: 700;
   line-height: 1.1;
-}
-
-@media (max-width: 700px) {
-  .showTitle {
-    font-size: clamp(2.5rem, 8vw, 3rem);
-  }
 }
 
 .backRow {
@@ -136,14 +307,6 @@
   justify-content: center;
   align-items: center;
 
-  h1 {
-    color: #fff;
-    font-family: Helvetica;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
-    font-size: 3rem;
-  }
   p {
     color: #7c7c7c;
     font-family: Helvetica;

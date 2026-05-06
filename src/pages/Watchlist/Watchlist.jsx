@@ -45,6 +45,7 @@ function WatchList() {
   if (watchlist) {
     return (
       <>
+        <Navbar />
         <div className={styles.page}>
           <h1 className={styles.title}>Watchlist</h1>
           <section>

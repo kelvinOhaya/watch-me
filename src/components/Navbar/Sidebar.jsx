@@ -1,6 +1,10 @@
 import React, { useState } from "react";
 import styles from "./Sidebar.module.css";
-import { faBookmark, faGear } from "@fortawesome/free-solid-svg-icons";
+import {
+  faBookmark,
+  faGear,
+  faSearch,
+} from "@fortawesome/free-solid-svg-icons";
 import { AnimatePresence, motion } from "framer-motion";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useNavigate } from "react-router-dom";
@@ -85,7 +89,11 @@ function Sidebar() {
                     navigate(`/search/${searchInput}`);
                   }}
                 >
-                  <span style={{ color: "white", fontSize: 16 }}>Search</span>
+                  <FontAwesomeIcon
+                    icon={faSearch}
+                    size={32}
+                    color="var(--p100)"
+                  />
                 </button>
               </form>
               <Option
