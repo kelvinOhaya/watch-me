@@ -58,15 +58,10 @@ function PopularShow({ show }) {
       <div className={styles.info}>
         <div className={styles.header}>
           <h1>{show.title || show.name}</h1>
+          <p style={{ fontSize: "1em", opacity: 0.7 }}>{releaseDate}</p>
           <div className={styles.meta}>
-            <p style={{ fontSize: 20, opacity: 0.7 }}>{releaseDate}</p>
             <p className={styles.rating}>
-              <span style={{ fontSize: 20 }}>
-                ⭐{show.vote_average}{" "}
-                <span style={{ fontSize: 16, opacity: 0.7 }}>
-                  ({show.vote_count})
-                </span>
-              </span>
+              <span style={{ fontSize: "1rem" }}>⭐{show.vote_average} </span>
             </p>
           </div>
         </div>

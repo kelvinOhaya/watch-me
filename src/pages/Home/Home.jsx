@@ -41,14 +41,14 @@ function Home() {
           <Navbar />
           <motion.section tabIndex={0} className={styles.popularSection}>
             <>
-              <motion.h1
+              <motion.p
                 initial={{ y: 16, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ duration: 0.3, ease: "easeOut" }}
                 className={styles.sectionTitle}
               >
                 In Theaters
-              </motion.h1>
+              </motion.p>
               <motion.div
                 variants={containerVariant}
                 initial="initial"
@@ -66,14 +66,14 @@ function Home() {
               </motion.div>
             </>
             <>
-              <motion.h1
+              <motion.p
                 initial={{ y: 16, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ duration: 0.3, ease: "easeOut" }}
                 className={styles.sectionTitle}
               >
                 Series
-              </motion.h1>
+              </motion.p>
               <motion.div
                 variants={containerVariant}
                 initial="initial"
