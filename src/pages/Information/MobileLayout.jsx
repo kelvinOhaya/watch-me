@@ -26,7 +26,7 @@ function MobileLayout({
         <iframe
           id="trailer"
           style={{
-            width: "100%",
+            width: "80vw",
             marginBottom: 32,
             marginTop: 81,
             height: "20vh",
@@ -59,14 +59,14 @@ function MobileLayout({
       <div className={styles.mobileContentContainer}>
         <div className={styles.mobileHeader}>
           <div className={styles.titleTagWppr}>
-            <h1 style={{ color: "white", fontSize: "1.3em" }}>
+            <h1 style={{ color: "white", fontSize: "3vw" }}>
               {show.title || show.name}
             </h1>
             <p
               style={{
                 color: "white",
                 fontFamily: "Helvetica",
-                fontSize: "0.9em",
+                fontSize: "2vw",
                 fontStyle: "normal",
                 fontWeight: 400,
                 lineHeight: "normal",
@@ -86,7 +86,7 @@ function MobileLayout({
             {show.genres?.map((id, key) => (
               <span
                 key={key}
-                style={{ color: "white", opacity: 0.7, fontSize: "0.7em" }}
+                style={{ color: "white", opacity: 0.7, fontSize: "2vw" }}
               >
                 {id.name + (key < show.genres?.length - 1 ? "·" : "")}
               </span>
@@ -99,8 +99,8 @@ function MobileLayout({
             <div
               style={{
                 position: "relative",
-                height: "100%",
-                width: "fit-content",
+                height: "20vw",
+                width: "15vw",
               }}
             >
               <div
@@ -112,9 +112,15 @@ function MobileLayout({
                   backgroundImage: `url(${fullPosterUrl})`,
                 }}
               />
-              <div style={{ position: "absolute", top: 0, right: -10 }}>
+              <div
+                style={{
+                  position: "absolute",
+                  top: "calc(0% - 7px)",
+                  right: "calc(0% - 7px)",
+                }}
+              >
                 <WatchListBtn
-                  size={20}
+                  size={"clamp(0.5rem, 2vw, 1rem)"}
                   hasBeenAdded={hasBeenAdded}
                   onToggle={onToggleWatchlist}
                 />
@@ -128,12 +134,31 @@ function MobileLayout({
               <p id="overview" className={styles.overview}>
                 {show.overview}
               </p>
-              <div style={{ flexBasis: "auto", display: "flex", gap: "8px" }}>
-                <span style={{ display: "flex", color: "white" }}>
-                  <FontAwesomeIcon icon={faStar} color="var(--p100)" />{" "}
+              <div
+                style={{
+                  flexBasis: "auto",
+                  display: "flex",
+                  gap: "8px",
+                }}
+              >
+                <span
+                  style={{ display: "flex", color: "white", fontSize: "2vw" }}
+                >
+                  <FontAwesomeIcon
+                    icon={faStar}
+                    color="var(--p100)"
+                    style={{ fontSize: "2vw" }}
+                  />
                   <p>{show.vote_average}</p>
                 </span>
-                <span style={{ display: "flex", color: "white", opacity: 0.7 }}>
+                <span
+                  style={{
+                    display: "flex",
+                    color: "white",
+                    opacity: 0.7,
+                    fontSize: "2vw",
+                  }}
+                >
                   <p>({show.vote_count}) votes</p>
                 </span>
               </div>

@@ -20,8 +20,12 @@ function Option({ icon, description, onClick }) {
       }}
       onClick={onClick}
     >
-      <p style={{ color: "white" }}>{description}</p>
-      <FontAwesomeIcon icon={icon} color="var(--p100)" />
+      <p style={{ color: "white", fontSize: "1rem" }}>{description}</p>
+      <FontAwesomeIcon
+        icon={icon}
+        style={{ fontSize: 16 }}
+        color="var(--p100)"
+      />
     </motion.button>
   );
 }
@@ -43,11 +47,19 @@ function Sidebar() {
             damping: 25,
             bounce: 0.5,
           }}
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
         >
           <FontAwesomeIcon
             icon={faGear}
             color="white"
-            style={{ fontSize: "32px" }}
+            style={{
+              fontSize: "clamp(16px, 1rem + 2vw, 32px)",
+              alignSelf: "center",
+            }}
             onClick={() => setDropdownIsOpen((prev) => !prev)}
           />
         </motion.div>

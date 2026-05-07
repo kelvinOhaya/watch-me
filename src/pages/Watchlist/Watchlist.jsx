@@ -48,38 +48,42 @@ function WatchList() {
         <Navbar />
         <div className={styles.page}>
           <h1 className={styles.title}>Watchlist</h1>
-          <section>
-            <h2 className={styles.sectionTitle}>Movies</h2>
-            <div className={styles.showContainer} ref={moviesRef}>
-              {watchlist
-                .filter((e) => e.type === "movie")
-                .map((show, index) => (
-                  <FeaturedShow
-                    key={`popular-${index}`}
-                    show={show}
-                    type={show.type}
-                    movieGenres={movieGenres}
-                    tvGenres={tvGenres}
-                  />
-                ))}
-            </div>
-          </section>
-          <section>
-            <h2 className={styles.sectionTitle}>TV Shows</h2>
-            <div className={styles.showContainer} ref={tvRef}>
-              {watchlist
-                .filter((e) => e.type === "tv")
-                ?.map((show, index) => (
-                  <FeaturedShow
-                    key={`popular-${index}`}
-                    show={show}
-                    type={show.type}
-                    movieGenres={movieGenres}
-                    tvGenres={tvGenres}
-                  />
-                ))}
-            </div>
-          </section>
+          {watchlist.filter((e) => e.type === "movie").length > 0 && (
+            <section>
+              <h2 className={styles.sectionTitle}>Movies</h2>
+              <div className={styles.showContainer} ref={moviesRef}>
+                {watchlist
+                  .filter((e) => e.type === "movie")
+                  .map((show, index) => (
+                    <FeaturedShow
+                      key={`popular-${index}`}
+                      show={show}
+                      type={show.type}
+                      movieGenres={movieGenres}
+                      tvGenres={tvGenres}
+                    />
+                  ))}
+              </div>
+            </section>
+          )}
+          {watchlist.filter((e) => e.type === "tv").length > 0 && (
+            <section>
+              <h2 className={styles.sectionTitle}>TV Shows</h2>
+              <div className={styles.showContainer} ref={tvRef}>
+                {watchlist
+                  .filter((e) => e.type === "tv")
+                  ?.map((show, index) => (
+                    <FeaturedShow
+                      key={`popular-${index}`}
+                      show={show}
+                      type={show.type}
+                      movieGenres={movieGenres}
+                      tvGenres={tvGenres}
+                    />
+                  ))}
+              </div>
+            </section>
+          )}
         </div>
       </>
     );

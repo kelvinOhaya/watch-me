@@ -59,18 +59,25 @@ function PopularShow({ show }) {
       <img className={styles.showImg} src={posterFullUrl} />
       <div className={styles.info}>
         <div className={styles.header}>
-          <h1>{show.title || show.name}</h1>
-          <p style={{ fontSize: "1em", opacity: 0.7 }}>{releaseDate}</p>
+          <p
+            style={{
+              fontSize: "clamp(0.3rem, 3vw, 2rem)",
+              textAlign: "left",
+              textWrap: "balance",
+            }}
+          >
+            {show.title || show.name}
+          </p>
+          <p style={{ fontSize: "2vw", opacity: 0.7 }}>{releaseDate}</p>
           <div className={styles.meta}>
             <p className={styles.rating}>
-              <span style={{ fontSize: "1rem" }}>
+              <span style={{ fontSize: "2vw" }}>
                 <FontAwesomeIcon icon={faStar} color="var(--p100)" />
                 {show.vote_average}{" "}
               </span>
             </p>
           </div>
         </div>
-        <p className={styles.description}>{show.overview}</p>
       </div>
     </button>
   );

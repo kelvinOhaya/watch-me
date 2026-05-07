@@ -87,8 +87,7 @@ function FeaturedShow({
         </div>
       )}
       <div className={styles.info}>
-        <h1 className={styles.title}>{title}</h1>
-        <p className={styles.meta}>{genresText}</p>
+        <p className={styles.title}>{title}</p>
       </div>
     </button>
   );
