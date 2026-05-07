@@ -95,8 +95,14 @@ function MobileLayout({
         </div>
 
         {show.hasPoster && (
-          <div style={{ display: "flex", gap: "4vw", flex: 1 }}>
-            <div style={{ position: "relative", height: "100%" }}>
+          <div className={styles.posterAndOverview}>
+            <div
+              style={{
+                position: "relative",
+                height: "100%",
+                width: "fit-content",
+              }}
+            >
               <div
                 id="poster"
                 className={styles.poster}

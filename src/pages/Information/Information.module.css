@@ -1,5 +1,5 @@
 .bg {
-  position: absolute;
+  position: fixed;
   top: 81px;
   left: 0;
   width: 100%;
@@ -23,7 +23,7 @@
 }
 
 .bgImg {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
@@ -99,7 +99,7 @@ iframe {
 
 .mobileContentContainer {
   display: flex;
-  overflow: hidden;
+  overflow: scroll;
 }
 
 @media (max-width: 830px) {
@@ -108,21 +108,37 @@ iframe {
     background: #00000055;
     padding: 16px;
     border-radius: 16px;
-    flex-wrap: wrap;
     /* prefer a vh-based cap so very narrow screens still get usable height */
     width: 90vw;
     display: flex;
-    flex-direction: row !important;
-    overflow-y: auto;
-    align-items: stretch; /* allow poster to stretch to container height */
+    flex-direction: column;
+    overflow-y: scroll;
+    max-height: min(80vh, 80vw);
+    align-items: center;
   }
 
+  .posterAndOverview {
+    display: flex;
+    gap: 4vw;
+    flex: 1 0 auto;
+    width: 100%;
+    align-items: flex-start;
+  }
+
+  @media (max-width: 380px) {
+    .posterAndOverview {
+      flex-direction: column;
+    }
+    /* .poster {
+      min-width: 80vw !important;
+    } */
+  }
   .mobileInfoCol {
     display: flex;
     flex-direction: column;
     flex: 1 1 auto;
     min-width: 0; /* allow children to shrink inside flex */
-    overflow: hidden;
+    overflow: auto;
   }
 
   .mobileHeader {
@@ -140,15 +156,12 @@ iframe {
 
   .poster {
     height: 100%;
-    /* use background image instead of <img> so element can fill emaining height */
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    /* limit width but fill vertical space of the container */
     max-width: 40%;
     width: auto;
     flex-shrink: 0;
-    /* ensure the poster always gets space in flex layout */
     flex-basis: 40%;
     min-width: 110px;
     min-height: 140px;
@@ -180,39 +193,6 @@ iframe {
     font-size: 1em;
     font-weight: 400;
     line-height: 1.2;
-  }
-}
-
-/* Very small screens tweaks */
-@media (max-width: 360px) {
-  .showTitle {
-    font-size: 0.1rem !important;
-  }
-  .mobileContentContainer {
-    gap: 8px;
-    padding: 8px;
-    width: 96vw;
-    max-height: min(70vh, 60vw);
-  }
-
-  .mobileInfoCol {
-    padding: 8px 0;
-  }
-
-  .poster {
-    max-width: 95px;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    flex-basis: 32%;
-    min-width: 80px;
-    min-height: 120px;
-  }
-
-  /* make tag container wrap more tightly via tag module; ensure it doesn't overflow */
-  .mobileInfoCol > div {
-    flex-wrap: wrap;
-    gap: 6px;
   }
 }
 
