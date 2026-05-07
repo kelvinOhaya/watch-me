@@ -4,6 +4,8 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { useNavigate } from "react-router-dom";
 import useInfo from "../../hooks/useInfo";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faStar } from "@fortawesome/free-solid-svg-icons";
 
 function PopularShow({ show }) {
   const navigate = useNavigate();
@@ -61,7 +63,10 @@ function PopularShow({ show }) {
           <p style={{ fontSize: "1em", opacity: 0.7 }}>{releaseDate}</p>
           <div className={styles.meta}>
             <p className={styles.rating}>
-              <span style={{ fontSize: "1rem" }}>⭐{show.vote_average} </span>
+              <span style={{ fontSize: "1rem" }}>
+                <FontAwesomeIcon icon={faStar} color="var(--p100)" />
+                {show.vote_average}{" "}
+              </span>
             </p>
           </div>
         </div>
