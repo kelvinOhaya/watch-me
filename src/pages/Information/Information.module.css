@@ -3,7 +3,8 @@
   top: 81px;
   left: 0;
   width: 100%;
-  height: 100vh;
+  height: auto;
+  bottom: 0;
   z-index: 0;
   pointer-events: none;
   display: flex;
@@ -18,16 +19,19 @@
   );
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.8);
   color: var(--white100);
+  overflow: hidden;
 }
 
 .bgImg {
   position: absolute;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: auto;
+  bottom: 0;
   z-index: -1;
   filter: blur(30px);
+  clip: auto;
 }
 
 .topContent {
@@ -48,21 +52,9 @@
 
 .poster {
   border-radius: 8px;
+  object-fit: cover;
   height: 100%;
-  width: 100%;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-color: #111;
-  display: block;
-}
-
-.desktopPosterWrap {
-  position: relative;
-  height: 100%;
-  flex: 0 0 clamp(180px, 22vw, 280px);
-  min-width: 180px;
-  padding-right: 8px;
+  flex: 1;
 }
 
 main {
@@ -88,10 +80,12 @@ iframe {
 .overview {
   color: #fff;
   font-family: Helvetica;
-  font-size: clamp(0.7rem, 1rem + 5vw, 1rem);
+  font-size: 1em;
   font-style: normal;
   font-weight: 400;
-  line-height: 27px;
+  line-height: 1.2em;
+  text-overflow: ellipsis;
+  scrollbar-width: thin;
 }
 
 @media (max-width: 700px) {
@@ -116,7 +110,6 @@ iframe {
     border-radius: 16px;
     flex-wrap: wrap;
     /* prefer a vh-based cap so very narrow screens still get usable height */
-    max-height: min(60vh, 50vw);
     width: 90vw;
     display: flex;
     flex-direction: row !important;
@@ -147,7 +140,7 @@ iframe {
 
   .poster {
     height: 100%;
-    /* use background image instead of <img> so element can fill remaining height */
+    /* use background image instead of <img> so element can fill emaining height */
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -169,7 +162,7 @@ iframe {
     margin-bottom: 16px;
     /* keep the overview usable on short viewports and narrow viewports */
     max-height: min(40vh, 50vh);
-    font-size: clamp(0.55rem, 1rem + 3vw, 1rem);
+    font-size: 0.8em;
     word-break: break-word;
     hyphens: auto;
   }
@@ -184,7 +177,7 @@ iframe {
 
   /* Mobile override: make title smaller and regular weight */
   .showTitle {
-    font-size: 1rem;
+    font-size: 1em;
     font-weight: 400;
     line-height: 1.2;
   }
@@ -192,6 +185,9 @@ iframe {
 
 /* Very small screens tweaks */
 @media (max-width: 360px) {
+  .showTitle {
+    font-size: 0.1rem !important;
+  }
   .mobileContentContainer {
     gap: 8px;
     padding: 8px;
@@ -204,20 +200,13 @@ iframe {
   }
 
   .poster {
-    max-width: 32%;
-    height: 100%;
-    max-height: none;
+    max-width: 95px;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     flex-basis: 32%;
     min-width: 80px;
     min-height: 120px;
-  }
-
-  .overview {
-    font-size: clamp(0.5rem, 0.9rem + 2vw, 0.95rem);
-    max-height: 35vh;
   }
 
   /* make tag container wrap more tightly via tag module; ensure it doesn't overflow */
@@ -246,10 +235,17 @@ iframe {
   padding-top: 81px;
 }
 
+.pageShell {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  height: fit-content;
+}
+
 .showTitle {
   color: #fff;
   font-family: Helvetica;
-  font-size: clamp(2rem, 2vw + 0.75rem, 4rem);
+  font-size: 1.5em;
   font-weight: 700;
   line-height: 1.1;
 }
