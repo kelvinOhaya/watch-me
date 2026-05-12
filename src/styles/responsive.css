@@ -1,0 +1,282 @@
+/* ========================================
+   RESPONSIVE UTILITIES & PATTERNS
+   Media query helpers and breakpoint patterns
+   ======================================== */
+
+/* ========== BREAKPOINT REFERENCE ========== */
+/*
+ * MOBILE-FIRST APPROACH:
+ * - Default styles: 320px (mobile)
+ * - Tablet styles: @media (min-width: 640px)
+ * - Desktop styles: @media (min-width: 1024px)
+ * - Wide desktop: @media (min-width: 1440px)
+ * - Ultra-wide: @media (min-width: 1920px)
+ *
+ * DEVICE TARGETS:
+ * - 320px: iPhone SE, small Android phones
+ * - 640px: iPad Mini, large Android phones, tablets
+ * - 1024px: iPad Pro, desktop browsers (11-inch)
+ * - 1440px: Desktop browsers (14-15 inch)
+ * - 1920px: Desktop browsers (21+ inch), TVs
+ */
+
+/* ========== COMMONLY USED MEDIA QUERIES ========== */
+
+/* Mobile Only - Phones */
+@media (max-width: 639px) {
+  /* Use for: mobile-specific styles that should be hidden on tablet+ */
+}
+
+/* Tablet and Up */
+@media (min-width: 640px) {
+  /* Use for: layouts that work on tablets and desktop */
+}
+
+/* Desktop and Up */
+@media (min-width: 1024px) {
+  /* Use for: full desktop layout */
+}
+
+/* Wide Desktop and Up */
+@media (min-width: 1440px) {
+  /* Use for: very large screens (optional, can reuse 1024px styles) */
+}
+
+/* Ultra-Wide */
+@media (min-width: 1920px) {
+  /* Use for: extra large screens, theaters, etc. */
+}
+
+/* ========== ORIENTATION-SPECIFIC ========== */
+
+/* Landscape mode phones */
+@media (max-height: 500px) and (orientation: landscape) {
+  /* Reduce vertical spacing on landscape phones */
+}
+
+/* Portrait tablets and up */
+@media (min-width: 640px) and (orientation: portrait) {
+  /* Two-column layouts work well here */
+}
+
+/* ========== HIGH-DPI SCREENS ========== */
+
+/* Retina displays (2x or higher pixel ratio) */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  /* Use for: high-resolution assets, sharper borders */
+}
+
+/* ========== PREFERS-REDUCED-MOTION ========== */
+
+@media (prefers-reduced-motion: reduce) {
+  /* Animations disabled for accessibility */
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ========== DARK MODE (future-proofing) ========== */
+
+@media (prefers-color-scheme: light) {
+  /* Light mode styles (if ever implemented) */
+}
+
+@media (prefers-color-scheme: dark) {
+  /* Dark mode styles (currently all styles) */
+}
+
+/* ========== TOUCH DEVICE DETECTION ========== */
+
+@media (hover: none) and (pointer: coarse) {
+  /* Touch devices - use larger tap targets */
+}
+
+@media (hover: hover) and (pointer: fine) {
+  /* Mouse/trackpad - enable hover states */
+}
+
+/* ========== PRINT STYLES ========== */
+
+@media print {
+  /* Hide navigation and interactive elements */
+  nav,
+  button,
+  input,
+  [role="button"] {
+    display: none;
+  }
+
+  body {
+    background: white;
+    color: black;
+  }
+}
+
+/* ========== COMMON PATTERNS ========== */
+
+/* Full-width on mobile, constrained on desktop */
+@media (min-width: 1024px) {
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+}
+
+/* Stack on mobile, side-by-side on tablet+ */
+@media (min-width: 640px) {
+  .flex-responsive {
+    display: flex;
+    gap: var(--spacing-md);
+  }
+}
+
+/* Grid adjustments by breakpoint */
+@media (min-width: 640px) {
+  .grid-responsive {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--spacing-md);
+  }
+}
+
+@media (min-width: 1024px) {
+  .grid-responsive {
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--spacing-lg);
+  }
+}
+
+@media (min-width: 1440px) {
+  .grid-responsive {
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--spacing-lg);
+  }
+}
+
+/* ========== SPACING ADJUSTMENTS BY BREAKPOINT ========== */
+
+/* Padding adjustments */
+@media (max-width: 639px) {
+  /* Tight spacing on mobile */
+  .padding-responsive {
+    padding: var(--spacing-sm);
+  }
+}
+
+@media (min-width: 640px) and (max-width: 1023px) {
+  /* Medium spacing on tablet */
+  .padding-responsive {
+    padding: var(--spacing-md);
+  }
+}
+
+@media (min-width: 1024px) {
+  /* Generous spacing on desktop */
+  .padding-responsive {
+    padding: var(--spacing-lg);
+  }
+}
+
+/* Gap adjustments */
+@media (min-width: 640px) {
+  .gap-responsive {
+    gap: var(--spacing-md);
+  }
+}
+
+@media (min-width: 1024px) {
+  .gap-responsive {
+    gap: var(--spacing-lg);
+  }
+}
+
+/* ========== TYPOGRAPHY ADJUSTMENTS ========== */
+
+/* Reduce font sizes on very small screens */
+@media (max-width: 359px) {
+  body {
+    font-size: var(--font-size-sm);
+  }
+
+  h1 {
+    font-size: var(--font-size-h3);
+  }
+  h2 {
+    font-size: var(--font-size-h4);
+  }
+  h3 {
+    font-size: var(--font-size-base);
+  }
+}
+
+/* ========== NAVIGATION PATTERNS ========== */
+
+/* Mobile nav: sidebar/hamburger pattern */
+@media (max-width: 639px) {
+  .nav-desktop {
+    display: none;
+  }
+
+  .nav-mobile {
+    display: block;
+  }
+}
+
+/* Tablet and up: full nav */
+@media (min-width: 640px) {
+  .nav-mobile {
+    display: none;
+  }
+
+  .nav-desktop {
+    display: flex;
+  }
+}
+
+/* ========== DISPLAY HELPERS ========== */
+
+/* Hide on mobile */
+@media (max-width: 639px) {
+  .hide-mobile {
+    display: none !important;
+  }
+}
+
+/* Hide on tablet and up */
+@media (min-width: 640px) {
+  .hide-tablet-up {
+    display: none !important;
+  }
+}
+
+/* Hide on desktop and up */
+@media (min-width: 1024px) {
+  .hide-desktop {
+    display: none !important;
+  }
+}
+
+/* Show only on mobile */
+@media (min-width: 640px) {
+  .show-mobile-only {
+    display: none !important;
+  }
+}
+
+/* Show only on tablet and up */
+@media (max-width: 639px) {
+  .show-tablet-up {
+    display: none !important;
+  }
+}
+
+/* Show only on desktop */
+@media (max-width: 1023px) {
+  .show-desktop-only {
+    display: none !important;
+  }
+}

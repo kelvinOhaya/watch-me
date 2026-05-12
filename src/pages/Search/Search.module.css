@@ -4,24 +4,24 @@
   min-height: 100%;
   display: flex;
   flex-direction: column;
-  padding: 32px 32px 0;
+  padding: var(--spacing-lg) var(--spacing-lg) 0;
   top: 0;
   padding-top: 113px;
-  gap: 64px;
+  gap: var(--spacing-2xl);
   background: linear-gradient(153deg, #150400 0.18%, #000 99.82%);
 }
 
 .title {
   margin: 0;
-  font-size: clamp(2.25rem, 6vw, 4rem);
-  color: #fff;
+  font-size: clamp(1.75rem, 5vw, 3rem);
+  color: var(--color-text-white);
   text-align: center;
 }
 
 .sectionTitle {
-  margin: 0 0 12px;
-  color: #fff;
-  padding-left: 8px;
+  margin: 0 0 var(--spacing-md);
+  color: var(--color-text-white);
+  padding-left: var(--spacing-xs);
 }
 
 .showContainer {

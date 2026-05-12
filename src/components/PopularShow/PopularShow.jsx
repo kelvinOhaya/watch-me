@@ -61,17 +61,17 @@ function PopularShow({ show }) {
         <div className={styles.header}>
           <p
             style={{
-              fontSize: "clamp(0.3rem, 3vw, 2rem)",
+              fontSize: "clamp(0.3rem, 2.5vw, 1.2rem)",
               textAlign: "left",
               textWrap: "balance",
             }}
           >
             {show.title || show.name}
           </p>
-          <p style={{ fontSize: "2vw", opacity: 0.7 }}>{releaseDate}</p>
+          <p style={{ fontSize: "1.3vw", opacity: 0.7 }}>{releaseDate}</p>
           <div className={styles.meta}>
             <p className={styles.rating}>
-              <span style={{ fontSize: "2vw" }}>
+              <span style={{ fontSize: "1.3vw" }}>
                 <FontAwesomeIcon icon={faStar} color="var(--p100)" />
                 {show.vote_average}{" "}
               </span>

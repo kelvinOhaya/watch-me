@@ -20,7 +20,7 @@ function DesktopLayout({
             style={{
               color: "white",
               fontFamily: "Helvetica",
-              fontSize: "1em",
+              fontSize: "0.85em",
               fontStyle: "normal",
               fontWeight: 400,
               lineHeight: "normal",
@@ -41,16 +41,16 @@ function DesktopLayout({
           style={{
             display: "flex",
             alignItems: "flex-start",
-            gap: 8,
+            gap: 6,
             height: "fit-content",
           }}
         >
-          <img src={starIconSrc} alt="Rating star" />
+          <img src={starIconSrc} alt="Rating star" style={{height: "20px"}} />
           <span style={{ display: "flex", flexDirection: "column", gap: 0 }}>
             <p style={{ display: "flex", alignItems: "flex-end", gap: 2 }}>
               <span
                 style={{
-                  fontSize: "24px",
+                  fontSize: "18px",
                   fontWeight: "700",
                   color: "white",
                 }}
@@ -60,7 +60,7 @@ function DesktopLayout({
               <span
                 style={{
                   color: "#7c7c7c",
-                  fontSize: "20px",
+                  fontSize: "14px",
                   lineHeight: 1,
                 }}
               >
@@ -70,7 +70,7 @@ function DesktopLayout({
             <p
               style={{
                 color: "#7c7c7c",
-                fontSize: "16px",
+                fontSize: "12px",
                 lineHeight: 1,
               }}
             >
@@ -86,12 +86,12 @@ function DesktopLayout({
 
       <main
         style={{
-          margin: "32px 0",
+          margin: "20px 0",
           display: "flex",
           justifyContent: "space-evenly",
           alignItems: "flex-start",
           minHeight: 100,
-          gap: 32,
+          gap: 20,
         }}
       >
         {show.hasPoster ? (
@@ -101,15 +101,15 @@ function DesktopLayout({
               aria-label="Poster image"
               style={{
                 backgroundImage: `url(${fullPosterUrl})`,
-                height: 300,
-                width: 170,
+                height: 250,
+                width: 140,
                 backgroundSize: "cover",
                 borderRadius: 8,
               }}
             />
-            <div style={{ position: "absolute", bottom: -15, right: -15 }}>
+            <div style={{ position: "absolute", bottom: -12, right: -12 }}>
               <WatchListBtn
-                size={32}
+                size={24}
                 hasBeenAdded={hasBeenAdded}
                 onToggle={onToggleWatchlist}
               />
@@ -119,8 +119,8 @@ function DesktopLayout({
           <div
             style={{
               height: "100%",
-              borderRadius: 32,
-              padding: 32,
+              borderRadius: 24,
+              padding: 24,
               display: "flex",
               justifyContent: "center",
               alignItems: "center",
@@ -154,7 +154,7 @@ function DesktopLayout({
               alignItems: "center",
               color: "white",
               textAlign: "center",
-              fontSize: 32,
+              fontSize: 24,
             }}
           >
             <h1>No Trailer Found :(</h1>
@@ -167,7 +167,7 @@ function DesktopLayout({
               color: "white",
               textAlign: "center",
               fontFamily: "Helvetica",
-              fontSize: 20,
+              fontSize: 16,
               fontWeight: 400,
               lineHeight: "normal",
             }}
@@ -178,8 +178,8 @@ function DesktopLayout({
             style={{
               display: "flex",
               flexWrap: "wrap",
-              gap: 32,
-              paddingTop: 16,
+              gap: 20,
+              paddingTop: 12,
             }}
           >
             {show.production_companies
@@ -198,8 +198,8 @@ function DesktopLayout({
       <div
         style={{
           display: "flex",
-          gap: 8,
-          marginBottom: 16,
+          gap: 6,
+          marginBottom: 12,
           overflow: "hidden",
         }}
       >

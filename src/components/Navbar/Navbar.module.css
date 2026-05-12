@@ -5,13 +5,13 @@
   background: rgba(0, 0, 0, 0.9);
   box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
   display: flex;
-  padding: 16px;
+  padding: var(--spacing-md);
   align-items: center;
   justify-content: space-between;
   flex-shrink: 0;
   flex-wrap: wrap;
   width: 100%;
-  z-index: 99;
+  z-index: var(--z-sticky);
 }
 
 .sidebarContainer {
@@ -19,7 +19,7 @@
   width: 0;
   height: 0;
 }
-@media (max-width: 753px) {
+@media (max-width: 639px) {
   .rightSide * {
     display: none;
     width: 0;
@@ -33,26 +33,26 @@
   }
 }
 .container * {
-  z-index: 999;
+  z-index: var(--z-sticky);
 }
 /* Title */
 .title {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: var(--spacing-sm);
   position: relative;
   z-index: 2;
   flex-shrink: 0;
 
   p {
     align-items: center;
-    font-family: Inter;
+    font-family: var(--font-family-accent);
     font-size: clamp(16px, 1rem + 2vw, 32px);
-    color: var(--white100);
+    color: var(--color-text-primary);
     font-style: normal;
     font-weight: 600;
     line-height: normal;
-    background: var(--pg100);
+    background: var(--gradient-primary);
     background-clip: text;
     -webkit-background-clip: text;
     color: transparent;
@@ -67,7 +67,7 @@
 /* Right side of the navbar */
 .rightSide {
   display: flex;
-  gap: 32px;
+  gap: var(--spacing-xl);
   align-items: center;
   justify-content: end;
   flex-shrink: 0;
@@ -80,7 +80,7 @@
   display: flex;
   position: relative;
   align-items: center;
-  gap: 16px;
+  gap: var(--spacing-md);
   flex: 1;
   min-width: 0;
 
@@ -94,10 +94,10 @@
     content: "";
     position: absolute;
     inset: 0;
-    border: 1px solid var(--p100);
-    border-radius: 32px;
+    border: 1px solid var(--color-primary-100);
+    border-radius: var(--radius-full);
     opacity: 0;
-    transition: opacity 0.2s ease-out;
+    transition: opacity var(--transition-fast);
     pointer-events: none;
   }
 
@@ -107,27 +107,24 @@
 
   input {
     border: 1px solid rgba(255, 166, 0, 0.25);
-    border-radius: 32px;
+    border-radius: var(--radius-full);
     background-color: transparent;
     outline: none;
-    padding: 8px 16px;
+    padding: var(--spacing-sm) var(--spacing-md);
     width: 100%;
     min-width: 0;
-    color: var(--white100);
+    color: var(--color-text-primary);
     font-size: 20px;
   }
   button {
     width: 80px;
     height: 40px;
-    border-radius: 32px;
+    border-radius: var(--radius-full);
     border: none;
-    background: var(
-      --pg100,
-      linear-gradient(290deg, #ffa600 10.1%, var(--p-200, #cf7f00) 52.4%)
-    );
+    background: var(--gradient-primary);
     color: white;
     font-weight: bold;
-    transition: 0.2s box-shadow ease-out;
+    transition: box-shadow var(--transition-fast);
   }
   button:hover {
     box-shadow: 0 0 12px 0 #d98700;

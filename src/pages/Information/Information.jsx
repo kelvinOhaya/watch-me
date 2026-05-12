@@ -11,9 +11,7 @@ import useInfo from "../../hooks/useInfo";
 import useUtils from "../../hooks/useUtils";
 import useWatchlist from "../../hooks/useWatchlist";
 import Skeleton from "react-loading-skeleton";
-import { useMediaQuery } from "react-responsive";
-import DesktopLayout from "./DesktopLayout";
-import MobileLayout from "./MobileLayout";
+import ResponsiveLayout from "./ResponsiveLayout";
 
 function Information() {
   const { showId, showType } = useParams();
@@ -30,8 +28,6 @@ function Information() {
   const navigate = useNavigate();
   const location = useLocation();
   const [searchParams] = useSearchParams();
-  // const overviewThreshold = useMediaQuery({ query: "(max-width: 830px)" });
-  const posterThreshold = useMediaQuery({ query: "(max-width: 830px)" });
   const searchQuery =
     searchParams.get("searchQuery") || location.state?.searchQuery;
   const prompt = `Hi Chat! Tell me a little bit about the ${show?.type} called ${show?.title || show?.name} released on ${show?.release_date || show?.first_air_date}
@@ -144,16 +140,8 @@ function Information() {
                 </a>
               </h1>
             </div>
-          ) : posterThreshold ? (
-            <MobileLayout
-              show={show}
-              fullPosterUrl={fullPosterUrl}
-              fullLogoUrl={fullLogoUrl}
-              hasBeenAdded={hasBeenAdded}
-              onToggleWatchlist={handleWatchlistToggle}
-            />
           ) : (
-            <DesktopLayout
+            <ResponsiveLayout
               show={show}
               fullPosterUrl={fullPosterUrl}
               fullLogoUrl={fullLogoUrl}

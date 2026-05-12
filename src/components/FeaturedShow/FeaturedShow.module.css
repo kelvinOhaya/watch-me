@@ -1,17 +1,17 @@
 .container {
   position: relative;
-  --poster-height: 30vw;
+  --poster-height: 20vw;
   --poster-ratio: 0.6667;
   --poster-width: calc(var(--poster-height) * var(--poster-ratio));
   height: fit-content;
-  max-width: calc(400px * var(--poster-ratio));
-  min-width: 95px;
-  min-height: 135px;
+  max-width: calc(300px * var(--poster-ratio));
+  min-width: 85px;
+  min-height: 120px;
   display: flex;
   flex-direction: column;
   align-items: stretch;
   flex-shrink: 0;
-  margin-bottom: 32px;
+  margin-bottom: var(--spacing-lg);
   width: var(--poster-width);
   overflow: hidden;
   background: transparent;
@@ -20,7 +20,7 @@
 }
 
 .container:focus-visible {
-  outline: 2px solid var(--p100);
+  outline: 2px solid var(--color-primary-100);
   outline-offset: 2px;
 }
 
@@ -35,7 +35,7 @@
   justify-content: center;
   align-items: center;
   object-fit: cover;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.26);
+  box-shadow: var(--shadow-lg);
 }
 
 .info {
@@ -45,25 +45,25 @@
   justify-content: center;
   align-items: center;
   background-color: transparent;
-  gap: 6px;
+  gap: var(--spacing-xs);
   flex-shrink: 0;
   color: white;
 }
 
 .title {
-  color: #fff;
-  font-family: Helvetica;
-  font-size: clamp(0.3rem, 8vw, 1.3em);
-  font-weight: 700;
+  color: var(--color-text-white);
+  font-family: var(--font-family-primary);
+  font-size: clamp(0.3rem, 6vw, 1em);
+  font-weight: var(--font-weight-bold);
   letter-spacing: 0.01em;
 }
 
 .meta {
-  color: #a6a6a6;
+  color: var(--color-text-secondary);
   width: 100%;
-  font-family: Helvetica;
-  font-size: 12px;
-  font-weight: 500;
+  font-family: var(--font-family-primary);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-medium);
   line-height: 1.3;
   min-height: calc(1.3em * 2);
   display: -webkit-box;
@@ -75,7 +75,7 @@
 
 .fallbackMark {
   color: rgba(255, 255, 255, 0.88);
-  font-size: 64px;
-  font-weight: 700;
+  font-size: 48px;
+  font-weight: var(--font-weight-bold);
   line-height: 1;
 }
