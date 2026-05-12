@@ -1,5 +1,4 @@
 import React from "react";
-import styles from "./WatchListBtn.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBookmark } from "@fortawesome/free-solid-svg-icons";
 
