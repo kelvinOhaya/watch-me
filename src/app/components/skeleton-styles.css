@@ -1,0 +1,44 @@
+/* Skeleton loader styles with reduced opacity and enhanced shine */
+.skeleton-loader-container {
+  animation: fadeIn 0.3s ease-in;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.skeleton-item {
+  opacity: 0.6 !important;
+  animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+/* Override react-loading-skeleton defaults for opacity and shine effect */
+.react-loading-skeleton {
+  opacity: 0.6;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.1) 0%,
+    rgba(255, 255, 255, 0.3) 50%,
+    rgba(255, 255, 255, 0.1) 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite;
+}
+
+.react-loading-skeleton::after {
+  animation: shimmer 2s infinite;
+}
